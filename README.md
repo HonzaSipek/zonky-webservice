@@ -1,4 +1,5 @@
 # Zonky webservice
+## Assignment
 
 Implement webservice (Java, Spring) which reads latest loans from Zonky marketplace, do some calculations and provides result on rest endpoint.
 Number of fetched loans should be provided as request parameter (but there can be default value if not provided, e.q. 100).
