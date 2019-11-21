@@ -1,0 +1,50 @@
+{
+  "id": 610930,
+  "url": "https://app.zonky.cz/loan/610930",
+  "name": "Zaplacení nevyhodných pujček",
+  "story": "Chci si udělat pořádek v penězích, a potřebuji pomocod Zonky",
+  "purpose": "REFINANCING",
+  "photos": [
+    {
+      "name": "refinancing-1-dd4828d8a8ef3522f794e8498dc6bd6a.jpg",
+      "url": "/loans/610930/photos/76843"
+    }
+  ],
+  "userId": 149191,
+  "borrowerNo": "1000118983",
+  "nickName": "zonky149191",
+  "termInMonths": 84,
+  "interestRate": 0.0599,
+  "revenueRate": 0.0499,
+  "annuity": 6625,
+  "premium": 589,
+  "rating": "AAA",
+  "topped": false,
+  "amount": 445000,
+  "remainingInvestment": 367700,
+  "investmentRate": 0.17370786516853934,
+  "covered": false,
+  "reservedAmount": 13400,
+  "zonkyPlusAmount": 9700,
+  "datePublished": "2019-11-20T21:27:26.430+01:00",
+  "published": true,
+  "deadline": "2019-11-22T21:26:34.675+01:00",
+  "myOtherInvestments": null,
+  "borrowerRelatedInvestmentInfo": null,
+  "investmentsCount": 5,
+  "questionsCount": 0,
+  "region": "11",
+  "mainIncomeType": "EMPLOYMENT",
+  "activeLoansCount": 1,
+  "insuranceActive": true,
+  "insuranceHistory": [
+    {
+      "policyPeriodFrom": "2019-11-21",
+      "policyPeriodTo": "2026-11-17"
+    }
+  ],
+  "countryOfOrigin": "CZ",
+  "currency": "CZK",
+  "additionallyInsured": false,
+  "annuityWithInsurance": 7214
+}
