@@ -54,7 +54,7 @@ public class Loan implements Serializable {
             @NonNull @JsonProperty("nickName") String nickName,
             @NonNull @JsonProperty("termInMonths") Integer termInMonths,
             @NonNull @JsonProperty("interestRate") Float interestRate,
-            @NonNull @JsonProperty("revenueRate") Float revenueRate,
+            @JsonProperty("revenueRate") Float revenueRate,
             @NonNull @JsonProperty("annuityWithInsurance") Integer annuityWithInsurance,
             @NonNull @JsonProperty("rating") String rating,
             @JsonProperty("topped") Boolean topped,
