@@ -41,11 +41,11 @@ public class ZonkyMarketService {
                     LOANS_REF_TYPE,
                     new HashMap<>());
             if (!response.getStatusCode().equals(HttpStatus.OK)) {
-                throw new ZonkyDataRetrievalException(String.format("Unable to get data from Zonky, status code: %d", response.getStatusCodeValue()));
+                throw new ZonkyDataRetrievalException(String.format("Unable to get data from Zonky, status code: %d, body: %s", response.getStatusCodeValue(), response.getBody()));
             }
             return response.getBody();
         } catch (RestClientException ex) {
-            throw new ZonkyDataRetrievalException("Unable to get data response from Zonky", ex);
+            throw new ZonkyDataRetrievalException(String.format("Unable to get data response from Zonky: %s", ex.getMessage()), ex);
         }
     }
 
