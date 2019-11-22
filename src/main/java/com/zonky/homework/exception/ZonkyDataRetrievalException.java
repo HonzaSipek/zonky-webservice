@@ -3,7 +3,7 @@ package com.zonky.homework.exception;
 /**
  * Data retrieval exception is generated if retrieving data from Zonky failed.
  */
-public class ZonkyDataRetrievalException extends Exception {
+public class ZonkyDataRetrievalException extends RuntimeException {
 
     public ZonkyDataRetrievalException(String message) {
         super(message);
