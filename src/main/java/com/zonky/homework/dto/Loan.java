@@ -5,11 +5,17 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * Loan holds all important information about loans. It is used as DTO for Zonky REST API
+ * and also for {@link com.zonky.homework.controller.LoanController} as part of the main response {@link LoanSummary}.
+ */
 @Getter
+@ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Loan implements Serializable {
 

@@ -9,7 +9,6 @@ import org.mockito.Mockito;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-
 public class LoanServiceTest {
 
     private static final float LOAN_A_INTEREST_RATE = 1.1000f;
@@ -18,10 +17,10 @@ public class LoanServiceTest {
     private static final float LOANS_AVG_INTEREST_RATE = 3.3000f;
 
     @Test
-    public void getLoansSummary_whenMockedZonkyServiceReturnsSomeLoans_shouldReturnSummaryContainingLoansAndStatistics(){
+    public void getLoansSummary_whenMockedZonkyServiceReturnsSomeLoans_shouldReturnSummaryContainingLoansAndStatistics() {
 
-        ZonkyMarketService zonkyMarketService = Mockito.mock(ZonkyMarketService.class);
-        Mockito.when(zonkyMarketService.getLastLoans(Mockito.anyInt())).thenReturn(
+        ZonkyMarketplaceService zonkyMarketplaceService = Mockito.mock(ZonkyMarketplaceService.class);
+        Mockito.when(zonkyMarketplaceService.getLastLoans(Mockito.anyInt())).thenReturn(
                 Arrays.asList(
                         new Loan(1, "URL", "NAME", "STORY", "PURPOSE", new ArrayList(),
                                 "NICK_NAME", 1, LOAN_A_INTEREST_RATE, 1f, 1,
@@ -42,7 +41,7 @@ public class LoanServiceTest {
                                 true, "DEADLINE", 1, 1, "REGION",
                                 "MAIN_INCOME_TYPE", true, new ArrayList()))
         );
-        LoanService loanService = new LoanService(zonkyMarketService);
+        LoanService loanService = new LoanService(zonkyMarketplaceService);
         LoanSummary loanSummary = loanService.getLoansSummary(3);
         Assert.assertNotNull(loanSummary);
         Assert.assertEquals(3, loanSummary.getLoans().size());
@@ -52,11 +51,11 @@ public class LoanServiceTest {
     }
 
     @Test
-    public void getLoansSummary_whenMockedZonkyServiceDoesNotReturnAnyLoan_shouldReturnEmptySummary(){
+    public void getLoansSummary_whenMockedZonkyServiceDoesNotReturnAnyLoan_shouldReturnEmptySummary() {
 
-        ZonkyMarketService zonkyMarketService = Mockito.mock(ZonkyMarketService.class);
-        Mockito.when(zonkyMarketService.getLastLoans(Mockito.anyInt())).thenReturn(new ArrayList<>());
-        LoanService loanService = new LoanService(zonkyMarketService);
+        ZonkyMarketplaceService zonkyMarketplaceService = Mockito.mock(ZonkyMarketplaceService.class);
+        Mockito.when(zonkyMarketplaceService.getLastLoans(Mockito.anyInt())).thenReturn(new ArrayList<>());
+        LoanService loanService = new LoanService(zonkyMarketplaceService);
         LoanSummary loanSummary = loanService.getLoansSummary(3);
         Assert.assertNotNull(loanSummary);
         Assert.assertEquals(0, loanSummary.getLoans().size());
@@ -66,11 +65,11 @@ public class LoanServiceTest {
     }
 
     @Test
-    public void getLoansSummary_whenZonkyServiceReturnsSomething_shouldReturnSomeSummary(){
+    public void getLoansSummary_whenZonkyServiceReturnsSomething_shouldReturnSomeSummary() {
 
-        ZonkyMarketService zonkyMarketService = new ZonkyMarketService();
-        LoanService loanService = new LoanService(zonkyMarketService);
+        ZonkyMarketplaceService zonkyMarketplaceService = new ZonkyMarketplaceService();
+        LoanService loanService = new LoanService(zonkyMarketplaceService);
         LoanSummary loanSummary = loanService.getLoansSummary(3);
-        Assert.assertNotNull(loanService);
+        Assert.assertNotNull(loanSummary);
     }
 }

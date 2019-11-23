@@ -2,7 +2,7 @@ package com.zonky.homework.controller;
 
 import com.zonky.homework.dto.LoanSummary;
 import com.zonky.homework.service.LoanService;
-import com.zonky.homework.service.ZonkyMarketService;
+import com.zonky.homework.service.ZonkyMarketplaceService;
 import org.assertj.core.util.Maps;
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,7 +28,7 @@ public class LoanControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void getLastLoans_whenRealZonkyServiceReturnSomething_shouldReturnSummary() {
+    public void getLastLoans_whenRealZonkyServiceReturnsSomething_shouldReturnSummary() {
 
         ResponseEntity<LoanSummary> loanSummaryResponse = restTemplate.getForEntity("/loans", LoanSummary.class, Maps.newHashMap("count", "3"));
         Assert.assertNotNull(loanSummaryResponse);
@@ -38,12 +38,11 @@ public class LoanControllerTest {
     @Test
     public void getLastLoans_whenMockedZonkyServiceThrowsException_shouldReturnServerError() {
 
-        ZonkyMarketService zonkyMarketService = Mockito.mock(ZonkyMarketService.class);
-        Mockito.when(zonkyMarketService.getLastLoans(Mockito.anyInt())).thenThrow(RestClientException.class);
-        ReflectionTestUtils.setField(loanService, "zonkyMarketService", zonkyMarketService);
+        ZonkyMarketplaceService zonkyMarketplaceService = Mockito.mock(ZonkyMarketplaceService.class);
+        Mockito.when(zonkyMarketplaceService.getLastLoans(Mockito.anyInt())).thenThrow(RestClientException.class);
+        ReflectionTestUtils.setField(loanService, "zonkyMarketplaceService", zonkyMarketplaceService);
         ResponseEntity<LoanSummary> loanSummaryResponse = restTemplate.getForEntity("/loans", LoanSummary.class, Maps.newHashMap("count", "3"));
         Assert.assertNotNull(loanSummaryResponse);
         Assert.assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, loanSummaryResponse.getStatusCode());
     }
-
 }

@@ -5,10 +5,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 import lombok.NonNull;
+import lombok.ToString;
 
 import java.io.Serializable;
 
+/**
+ * Insurance history item is a part of {@link Loan} DTO.
+ */
 @Getter
+@ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class InsuranceHistoryItem implements Serializable {
 

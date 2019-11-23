@@ -1,7 +1,7 @@
 package com.zonky.homework.exception;
 
 /**
- * Data retrieval exception is generated if retrieving data from Zonky failed.
+ * Data retrieval exception is generated if retrieving data from Zonky API failed.
  */
 public class ZonkyDataRetrievalException extends RuntimeException {
 

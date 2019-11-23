@@ -8,14 +8,18 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Loan service is the main service of controller {@link com.zonky.homework.controller.LoanController}
+ * and provides method for obtaining loans with statistics.
+ */
 @Service
 public class LoanService {
 
-    private final ZonkyMarketService zonkyMarketService;
+    private final ZonkyMarketplaceService zonkyMarketplaceService;
 
     @Autowired
-    public LoanService(ZonkyMarketService zonkyMarketService) {
-        this.zonkyMarketService = zonkyMarketService;
+    public LoanService(ZonkyMarketplaceService zonkyMarketplaceService) {
+        this.zonkyMarketplaceService = zonkyMarketplaceService;
     }
 
     /**
@@ -26,7 +30,7 @@ public class LoanService {
      */
     public LoanSummary getLoansSummary(int lastLoansCount) {
 
-        List<Loan> loans = zonkyMarketService.getLastLoans(lastLoansCount);
+        List<Loan> loans = zonkyMarketplaceService.getLastLoans(lastLoansCount);
         List<Float> interestRates = loans.stream().map(Loan::getInterestRate).collect(Collectors.toList());
         float minInterestRate = (float) interestRates.stream().mapToDouble(Float::doubleValue).min().orElse(Double.NaN);
         float maxInterestRate = (float) interestRates.stream().mapToDouble(Float::doubleValue).max().orElse(Double.NaN);

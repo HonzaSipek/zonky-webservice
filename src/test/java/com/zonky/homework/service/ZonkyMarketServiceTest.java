@@ -30,8 +30,8 @@ public class ZonkyMarketServiceTest {
     @Test
     public void buildHeaders_whenAllArgumentsAreCorrect_shouldReturnHeaders() throws Exception {
 
-        ZonkyMarketService service = PowerMockito.mock(ZonkyMarketService.class);
-        PowerMockito.doCallRealMethod().when(service, "buildHeaders", Mockito.anyInt(), Mockito.anyString());
+        ZonkyMarketplaceService service = Mockito.mock(ZonkyMarketplaceService.class);
+        PowerMockito.when(service, "buildHeaders", LOANS_COUNT, "").thenCallRealMethod();
         HttpHeaders headers = Whitebox.invokeMethod(service, "buildHeaders", HEADER_PAGE_SIZE_VALUE, HEADER_PAGE_ORDER_VALUE);
         Assert.assertNotNull(headers);
         Assert.assertEquals(String.valueOf(HEADER_PAGE_INDEX_VALUE), headers.get(HEADER_PAGE_INDEX_NAME).get(0));
@@ -42,7 +42,7 @@ public class ZonkyMarketServiceTest {
     @Test
     public void getLastLoans_whenEverythingIsOk_shouldReturnResponse() throws ZonkyDataRetrievalException {
 
-        ZonkyMarketService service = new ZonkyMarketService();
+        ZonkyMarketplaceService service = new ZonkyMarketplaceService();
         List<Loan> loans = service.getLastLoans(LOANS_COUNT);
         Assert.assertNotNull(loans);
     }
@@ -50,7 +50,7 @@ public class ZonkyMarketServiceTest {
     @Test(expected = ZonkyDataRetrievalException.class)
     public void getLastLoans_whenZonkyDoesNotReturnOkStatus_shouldThrowException() throws ZonkyDataRetrievalException {
 
-        ZonkyMarketService service = Mockito.mock(ZonkyMarketService.class);
+        ZonkyMarketplaceService service = Mockito.mock(ZonkyMarketplaceService.class);
         ResponseEntity response = Mockito.mock(ResponseEntity.class);
         Mockito.when(response.getStatusCode()).thenReturn(HttpStatus.BAD_REQUEST);
         RestTemplate restTemplate = Mockito.mock(RestTemplate.class);
@@ -68,10 +68,7 @@ public class ZonkyMarketServiceTest {
     @Test(expected = ZonkyDataRetrievalException.class)
     public void getLastLoans_whenConnectionToZonkyFailed_shouldThrowException() throws ZonkyDataRetrievalException {
 
-        ZonkyMarketService service = Mockito.mock(ZonkyMarketService.class);
-        ResponseEntity response = Mockito.mock(ResponseEntity.class);
-        Mockito.when(response.getStatusCode()).thenReturn(HttpStatus.BAD_REQUEST);
-        Mockito.when(response.getStatusCode()).thenReturn(HttpStatus.BAD_REQUEST);
+        ZonkyMarketplaceService service = Mockito.mock(ZonkyMarketplaceService.class);
         RestTemplate restTemplate = Mockito.mock(RestTemplate.class);
         Mockito.when(restTemplate.exchange(
                 Mockito.anyString(),
